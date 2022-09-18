@@ -15,11 +15,23 @@ export default function Home() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable name="Cursos Sugeridos"/>
+          <CardTable
+            name="Cursos Sugeridos"
+            data={[
+              { courseName: "ArtesDramaticas", category: "Arte", qty: 10 },
+              { courseName: "ArtesLiterarias", category: "Arte", qty: 5 },
+            ]}
+          />
         </div>
-        <a onClick={() => history.push('/app/admin/total')}>Total de Sugerencias</a>
-        <a onClick={() => history.push('/app/admin/students-stats')}>Estadisticas Estudiantes</a>
-        <a onClick={() => history.push('/app/admin/suggestions-stats')}>Estadisticas Sugerencias</a>
+        <a onClick={() => history.push("/app/admin/total")}>
+          Total de Sugerencias
+        </a>
+        <a onClick={() => history.push("/app/admin/students-stats")}>
+          Estadisticas Estudiantes
+        </a>
+        <a onClick={() => history.push("/app/admin/suggestions-stats")}>
+          Estadisticas Sugerencias
+        </a>
       </div>
     </>
   );
