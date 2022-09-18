@@ -15,10 +15,10 @@ export default function SuggestionsStats() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Top 5 clubes más sugeridos"/>
         </div>
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Top 3 clubesmenos sugeridos"/>
         </div>
       </div>
     </>

@@ -15,7 +15,7 @@ export default function Total() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Total de Sugerencias"/>
         </div>
       </div>
     </>

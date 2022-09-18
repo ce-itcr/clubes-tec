@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import TableDropdown from "../Dropdowns/TableDropdown";
 
 // components
 
 
-export default function CardTable({ color }) {
+export default function CardTable({ color, name }) {
+
   return (
     <>
       <div
@@ -23,7 +24,7 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Card Tables
+                {name}
               </h3>
             </div>
           </div>

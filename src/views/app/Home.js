@@ -15,7 +15,7 @@ export default function Home() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Cursos Sugeridos"/>
         </div>
         <a onClick={() => history.push('/app/admin/total')}>Total de Sugerencias</a>
         <a onClick={() => history.push('/app/admin/students-stats')}>Estadisticas Estudiantes</a>

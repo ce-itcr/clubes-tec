@@ -12,7 +12,7 @@ export default function Profile() {
           <CardProfile />
         </div>
         <div className="w-full lg:w-8/12 px-4" style={{paddingTop:65}}>
-          <CardTable />
+          <CardTable name="Cursos que he sugerido"/>
         </div>
       </div>
     </>

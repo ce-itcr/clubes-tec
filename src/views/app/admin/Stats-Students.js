@@ -15,7 +15,7 @@ export default function StudentStats() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Estudiantes con más sugerencias"/>
         </div>
       </div>
     </>
