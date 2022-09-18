@@ -8,6 +8,13 @@ export default function Register() {
 
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [section, setSection] = useState("");
+  const [userTypeEntry, setUserTypeEntry] = useState("");
+
+  const sections = [{ name: "7A" }, { name: "7B" }, { name: "7C" }];
+  const userTypes = [{ name: "Administrador" }, { name: "Estudiante" }];
+
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordIconShown, setPasswordIconShown] = useState(false);
 
@@ -21,15 +28,29 @@ export default function Register() {
     setPassword(value);
   };
 
+  const handleInputChangeForFullName = async (e) => {
+    var value = e.target.value;
+    setFullName(value);
+  };
+
+  const handleInputChangeForUserType = async (e) => {
+    var value = e.target.value;
+    setUserTypeEntry(value);
+  };
+
+  const handleInputChangeForSection = async (e) => {
+    var value = e.target.value;
+    setSection(value);
+  };
+
   const verifyUser = async () => {
-    if (userId === "" || password === "") {
+    if (userId === "" || password === "" || userTypeEntry === '' || fullName === '') {
       toast.error("Debe llenar todos los espacios.");
     } else {
-      toast.success("Bienvenido a clubes-tec");
-      
-      sleep(2500).then(()=>{
-        history.push('/auth');
-      })
+      toast.success("Usuario Registrado exitosamente");
+      sleep(2500).then(() => {
+        history.push("/auth");
+      });
     }
   };
 
@@ -65,7 +86,62 @@ export default function Register() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Nombre de Usuario
+                      Nombre Completo <small style={{paddingLeft:320, color:'#ff0000'}}>* Requerido</small>
+                    </label>
+                    <input
+                      type="string"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Jhon Doe Doe"
+                      onChange={handleInputChangeForFullName}
+                    />
+                  </div>
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Sección
+                    </label>
+                    <select
+                      name="section"
+                      id="section"
+                      onChange={handleInputChangeForSection}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                      <option value="option">Seleccione una opción</option>
+                      {sections.map((data) => (
+                        <option value={data.name}>{data.name}</option>
+                      ))}
+                      ;
+                    </select>
+                  </div>
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Tipo de Usuario <small style={{paddingLeft:330, color:'#ff0000'}}>* Requerido</small>
+                    </label>
+                    <select
+                      name="userType"
+                      id="userType"
+                      onChange={handleInputChangeForUserType}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                      <option value="option">Seleccione una opción</option>
+                      {userTypes.map((data) => (
+                        <option value={data.name}>{data.name}</option>
+                      ))}
+                      ;
+                    </select>
+                  </div>
+
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Nombre de Usuario <small style={{paddingLeft:307, color:'#ff0000'}}>* Requerido</small>
                     </label>
                     <input
                       type="string"
@@ -77,13 +153,12 @@ export default function Register() {
 
                   <div
                     className="relative w-full mb-3"
-                    style={{ paddingBottom: "10px" }}
                   >
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Contraseña
+                      Contraseña <small style={{paddingLeft:352, color:'#ff0000'}}>* Requerido</small>
                     </label>
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -92,7 +167,7 @@ export default function Register() {
                       onChange={handleInputChangeForPassword}
                     />
                   </div>
-                  <div style={{ paddingBottom: "35px" }}>
+                  <div >
                     <label className="inline-flex items-center cursor-pointer">
                       <a onClick={togglePassword}>
                         <i
@@ -112,7 +187,6 @@ export default function Register() {
                   </div>
                   <div
                     className="text-center mt-6"
-                    style={{ paddingBottom: "35px" }}
                   >
                     <button
                       className="bg-darkBlue-001 text-white active:bg-lightBlue-600  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
