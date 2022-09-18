@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import CardTable from "../../components/Cards/CardTable";
+import CardTable from "../../../components/Cards/CardTable";
 
-export default function Home() {
+export default function Total() {
   let history = useHistory();
   return (
     <>
@@ -17,9 +17,6 @@ export default function Home() {
         <div className="w-full mb-12 px-4">
           <CardTable />
         </div>
-        <a onClick={() => history.push('/app/admin/total')}>Total de Sugerencias</a>
-        <a onClick={() => history.push('/app/admin/students-stats')}>Estadisticas Estudiantes</a>
-        <a onClick={() => history.push('/app/admin/suggestions-stats')}>Estadisticas Sugerencias</a>
       </div>
     </>
   );

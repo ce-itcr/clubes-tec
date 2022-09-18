@@ -16,9 +16,7 @@ export default function Auth() {
       <Navbar transparent />
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
-          <div
-            className="absolute top-0 w-full h-full bg-darkBlue-001 bg-no-repeat bg-full"
-          ></div>
+          <div className="absolute top-0 w-full h-full bg-darkBlue-001 bg-no-repeat bg-full"></div>
           <Switch>
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/register" exact component={Register} />
