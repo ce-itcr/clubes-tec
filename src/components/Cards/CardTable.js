@@ -66,7 +66,94 @@ export default function CardTable({ color, name, data }) {
           </th>
         </>
       );
-    } else {
+    }
+    if (
+      currentTable === "Total Sugerencias"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+
+    if (
+      currentTable === "Estudiantes con más sugerencias"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            studentName
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+    if (
+      currentTable === "Cursos que he sugerido"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+        </>
+      );
+    }
+
+    else {
       return (
         <>
           <th
@@ -127,7 +214,63 @@ export default function CardTable({ color, name, data }) {
           ))}
         </>
       );
-    } else {
+    }
+    if (
+      currentTable === "Total Sugerencias"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+    if (
+      currentTable === "Estudiantes con más sugerencias"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.studentName}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+    if (
+      currentTable === "Cursos que he sugerido"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.courseName}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+
+    else {
       return (
         <tr>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -143,6 +286,43 @@ export default function CardTable({ color, name, data }) {
       );
     }
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
