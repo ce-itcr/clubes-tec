@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 
 // components
 
@@ -11,6 +11,13 @@ import Login from "../views/auth/Login";
 import Register from "../views/auth/Register";
 
 export default function Auth() {
+
+  let history = useHistory();
+
+  if (localStorage.getItem("activeSession")) {
+    history.push("/app");
+  }
+
   return (
     <>
       <Navbar transparent />

@@ -26,7 +26,6 @@ export default function Profile() {
 
   return (
     <>
-      <Toaster />
       <div
         className="flex flex-wrap"
         style={{
