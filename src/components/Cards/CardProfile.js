@@ -1,5 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
+import toast from "react-hot-toast";
+import { sleep } from "../../assets/utils/Sleep";
+
+const customStyles = {
+  content: {
+    backgroundColor: "#fff",
+    color: "#000",
+    top: "50%",
+    left: "58%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-80%, -50%)",
+  },
+};
 
 // components
 
@@ -11,17 +27,34 @@ export default function CardProfile() {
   const [section, setSection] = useState("");
   const [userType, setUserType] = useState("");
 
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+
+  const openLogoutModal = () => {
+    setLogoutModalOpen(true);
+  };
+  const closeLogoutModal = () => {
+    setLogoutModalOpen(false);
+  };
+
+  const logout = () => {
+    toast.success("Cerrando Sesión ....");
+    localStorage.clear();
+
+    sleep(2500).then(() => {
+      history.push("/auth");
+    });
+  };
+
   useEffect(() => {
     let userData = JSON.parse(localStorage.getItem("userData"));
     setFullName(userData.fullName);
     setUsername(userData.username);
     setSection(userData.section);
-    if(userData.userType === 'student') {
-      setUserType('Estudiante');
+    if (userData.userType === "student") {
+      setUserType("Estudiante");
     } else {
-      setUserType('Administrador');
+      setUserType("Administrador");
     }
-    
   }, []);
 
   return (
@@ -70,7 +103,7 @@ export default function CardProfile() {
                   <button
                     className="bg-darkBlue-001 active:bg-lightBlue-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => {history.push("/auth"); localStorage.clear();}}
+                    onClick={openLogoutModal}
                   >
                     <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
                   </button>
@@ -80,6 +113,31 @@ export default function CardProfile() {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={logoutModalOpen}
+        onRequestClose={closeLogoutModal}
+        style={customStyles}
+      >
+        <h2>
+          <b>Preparación de Clubes</b>
+        </h2>
+        <div>¿Está seguro que desea cerrar sesión?</div>
+        <form style={{ marginTop: "20px" }}>
+          <button
+            onClick={closeLogoutModal}
+            style={{
+              marginRight: "20px",
+              marginLeft: "200px",
+              color: "#d4443c",
+            }}
+          >
+            Cancelar
+          </button>
+          <button type="button" onClick={logout} style={{ color: "#1db954" }}>
+            Cerrar Sesión
+          </button>
+        </form>
+      </Modal>
     </>
   );
 }
