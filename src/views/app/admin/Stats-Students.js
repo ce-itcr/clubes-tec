@@ -15,7 +15,9 @@ export default function StudentStats() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable name="Estudiantes con más sugerencias"
+            data={[{studentName:'juan perez', qty:5},{studentName:'fernando lopez', qty:5}]}/** Aca deberiamos tener un qty aparte para los estudiantes **/
+          />
         </div>
       </div>
     </>

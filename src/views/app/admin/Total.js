@@ -15,7 +15,13 @@ export default function Total() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable />
+          <CardTable
+              name="Total Sugerencias"
+              data={[
+                {category:'Arte', qty:5},
+                {category:'Deportes', qty:2}
+              ]}
+            />
         </div>
       </div>
     </>

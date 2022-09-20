@@ -12,7 +12,26 @@ export default function Register() {
   const [section, setSection] = useState("");
   const [userTypeEntry, setUserTypeEntry] = useState("");
 
-  const sections = [{ name: "7A" }, { name: "7B" }, { name: "7C" }];
+  const sections = [
+    { name: "7A" },
+    { name: "7B" },
+    { name: "7C" },
+    { name: "8A" },
+    { name: "8B" },
+    { name: "8C" },
+    { name: "9A" },
+    { name: "9B" },
+    { name: "9C" },
+    { name: "10A" },
+    { name: "10B" },
+    { name: "10C" },
+    { name: "11A" },
+    { name: "11B" },
+    { name: "11C" },
+    { name: "11A" },
+    { name: "11B" },
+    { name: "11C" },
+  ];
   const userTypes = [{ name: "Administrador" }, { name: "Estudiante" }];
 
   const [passwordShown, setPasswordShown] = useState(false);
@@ -44,7 +63,12 @@ export default function Register() {
   };
 
   const verifyUser = async () => {
-    if (userId === "" || password === "" || userTypeEntry === '' || fullName === '') {
+    if (
+      userId === "" ||
+      password === "" ||
+      userTypeEntry === "" ||
+      fullName === ""
+    ) {
       toast.error("Debe llenar todos los espacios.");
     } else {
       toast.success("Usuario Registrado exitosamente");
@@ -86,7 +110,10 @@ export default function Register() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Nombre Completo <small style={{paddingLeft:320, color:'#ff0000'}}>* Requerido</small>
+                      Nombre Completo{" "}
+                      <small style={{ paddingLeft: 320, color: "#ff0000" }}>
+                        * Requerido
+                      </small>
                     </label>
                     <input
                       type="string"
@@ -120,7 +147,10 @@ export default function Register() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Tipo de Usuario <small style={{paddingLeft:330, color:'#ff0000'}}>* Requerido</small>
+                      Tipo de Usuario{" "}
+                      <small style={{ paddingLeft: 330, color: "#ff0000" }}>
+                        * Requerido
+                      </small>
                     </label>
                     <select
                       name="userType"
@@ -141,7 +171,10 @@ export default function Register() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Nombre de Usuario <small style={{paddingLeft:307, color:'#ff0000'}}>* Requerido</small>
+                      Nombre de Usuario{" "}
+                      <small style={{ paddingLeft: 307, color: "#ff0000" }}>
+                        * Requerido
+                      </small>
                     </label>
                     <input
                       type="string"
@@ -151,14 +184,15 @@ export default function Register() {
                     />
                   </div>
 
-                  <div
-                    className="relative w-full mb-3"
-                  >
+                  <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Contraseña <small style={{paddingLeft:352, color:'#ff0000'}}>* Requerido</small>
+                      Contraseña{" "}
+                      <small style={{ paddingLeft: 352, color: "#ff0000" }}>
+                        * Requerido
+                      </small>
                     </label>
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -167,7 +201,7 @@ export default function Register() {
                       onChange={handleInputChangeForPassword}
                     />
                   </div>
-                  <div >
+                  <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <a onClick={togglePassword}>
                         <i
@@ -185,9 +219,7 @@ export default function Register() {
                       </a>
                     </label>
                   </div>
-                  <div
-                    className="text-center mt-6"
-                  >
+                  <div className="text-center mt-6">
                     <button
                       className="bg-darkBlue-001 text-white active:bg-lightBlue-600  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"

@@ -1,11 +1,292 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import TableDropdown from "../Dropdowns/TableDropdown";
 
 // components
 
+export default function CardTable({ color, name, data }) {
+  /**
+   * Cursos sugeridos : nombreCurso, categoria, cantidad de sugerencias
+   *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
+   * Cursos que yo he sugerido : nombreCurso, categoria
+   *                    [{courseName:ArtesDramaticas, category:Arte},{courseName:ArtesLiterarias, category:Arte}]
+   * Total de sugerencias: categoria, cantidad de sugerencias
+   *                    [{category:Arte, qty:5},{category:Deportes, qty:2}]
+   * Estadisticas estudiantes: nombreEstudiante, cantidad de sugerencias
+   *                    [{studentName:juan perez, qty:5},{studentName:fernando lopez, qty:5}]
+   * Estadisticas sugerencias I: nombreCurso, categoria, cantidad de sugerencias
+   *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
+   * Estadisticas sugerencias II: nombreCurso, categoria, cantidad de sugerencias
+   *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
+   */
 
-export default function CardTable({ color }) {
+  const [currentData, setCurrentData] = useState([]);
+
+  useEffect(() => {
+    //console.log(name, data);
+    setCurrentData(data);
+  }, []);
+
+  const setTitles = (currentTable) => {
+    if (
+      currentTable === "Cursos Sugeridos" ||
+      currentTable === "Top 5 clubes más sugeridos" ||
+      currentTable === "Top 3 clubes menos sugeridos"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+    if (
+      currentTable === "Total Sugerencias"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+
+    if (
+      currentTable === "Estudiantes con más sugerencias"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre de Estudiante
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+    if (
+      currentTable === "Cursos que he sugerido"
+    ) {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+        </>
+      );
+    }
+
+    else {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+        </>
+      );
+    }
+  };
+
+  const setData = (currentTable) => {
+    if (
+      currentTable === "Cursos Sugeridos" ||
+      currentTable === "Top 5 clubes más sugeridos" ||
+      currentTable === "Top 3 clubes menos sugeridos"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.courseName}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+    if (
+      currentTable === "Total Sugerencias"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+    if (
+      currentTable === "Estudiantes con más sugerencias"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.studentName}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+    if (
+      currentTable === "Cursos que he sugerido"
+    ) {
+      return (
+        <>
+          {currentData.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.courseName}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
+
+    else {
+      return (
+        <tr>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            $2,500 USD
+          </td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            $2,500 USD
+          </td>
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <i className="fas fa-circle text-orange-500 mr-2"></i> pending
+          </td>
+        </tr>
+      );
+    }
+  };
+
   return (
     <>
       <div
@@ -23,7 +304,7 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Card Tables
+                {name}
               </h3>
             </div>
           </div>
@@ -32,88 +313,9 @@ export default function CardTable({ color }) {
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
-              <tr>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Project
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Budget
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Status
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Completion
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                ></th>
-              </tr>
+              <tr>{setTitles(name)}</tr>
             </thead>
-            <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                  <img
-                    src={require("../../assets/img/bootstrap.jpg").default}
-                    className="h-12 w-12 bg-white rounded-full border"
-                    alt="..."
-                  ></img>{" "}
-                  <span
-                    className={
-                      "ml-3 font-bold " +
-                      +(color === "light" ? "text-blueGray-600" : "text-white")
-                    }
-                  >
-                    Argon Design System
-                  </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  $2,500 USD
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  12312
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
-                </td>
-              </tr>
-            </tbody>
+            <tbody>{setData(name)}</tbody>
           </table>
         </div>
       </div>
