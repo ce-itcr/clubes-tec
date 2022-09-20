@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 // components
 
 export default function CardProfile() {
   let history = useHistory();
+
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [section, setSection] = useState("");
+  const [userType, setUserType] = useState("");
+
+  useEffect(() => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    setFullName(userData.fullName);
+    setUsername(userData.username);
+    setSection(userData.section);
+    if(userData.userType === 'student') {
+      setUserType('Estudiante');
+    } else {
+      setUserType('Administrador');
+    }
+    
+  }, []);
 
   return (
     <>
@@ -24,22 +42,22 @@ export default function CardProfile() {
           </div>
           <div className="text-center mt-12">
             <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              Jenna Stones
+              {fullName}
             </h3>
             <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-              Los Angeles, California
+              Costa Rica
             </div>
             <div className="mb-2 text-blueGray-600 mt-10">
               <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-              Solution Manager - Creative Tim Officer
+              {userType}
             </div>
             <div
               className="mb-2 text-blueGray-600"
               style={{ paddingBottom: 30 }}
             >
               <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-              University of Computer Science
+              {username} - {section}
             </div>
           </div>
           <div
@@ -52,7 +70,7 @@ export default function CardProfile() {
                   <button
                     className="bg-darkBlue-001 active:bg-lightBlue-600 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => history.push("/auth")}
+                    onClick={() => {history.push("/auth"); localStorage.clear();}}
                   >
                     <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
                   </button>

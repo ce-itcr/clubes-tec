@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import { sleep } from "../../assets/utils/Sleep";
+import { Auth } from "../../communication/Auth";
 
 export default function Login() {
   let history = useHistory();
@@ -10,6 +11,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordIconShown, setPasswordIconShown] = useState(false);
+
+  let authClient = new Auth();
 
   const handleInputChangeForUserId = async (e) => {
     var value = e.target.value;
@@ -25,11 +28,28 @@ export default function Login() {
     if (userId === "" || password === "") {
       toast.error("Debe llenar todos los espacios.");
     } else {
-      toast.success("Bienvenido a clubes-tec");
+      const clientResponse = await authClient.verifyUser(userId, password);
+      if (clientResponse.data.length !== 0) {
+        console.log(clientResponse.data[0]);
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            fullName: clientResponse.data[0].fullName,
+            username: clientResponse.data[0].username,
+            userType: clientResponse.data[0].userType,
+            section: clientResponse.data[0].section,
+          })
+        );
+        toast.success("Bienvenido a clubes-tec");
 
-      sleep(2500).then(()=>{
-        history.push('/app/home');
-      })
+        sleep(2500).then(() => {
+          history.push("/app/home");
+        });
+      } else {
+        toast.error(
+          "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
+        );
+      }
     }
   };
 
