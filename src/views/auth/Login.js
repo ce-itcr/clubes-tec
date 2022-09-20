@@ -40,12 +40,18 @@ export default function Login() {
             section: clientResponse.data[0].section,
           })
         );
-        localStorage.setItem('activeSession', true);
+        localStorage.setItem("activeSession", true);
         toast.success("Bienvenido a clubes-tec");
 
-        sleep(2500).then(() => {
-          history.push("/app/home");
-        });
+        if (clientResponse.data[0].userType === "student") {
+          sleep(2500).then(() => {
+            history.push("/app/home");
+          });
+        } else {
+          sleep(2500).then(() => {
+            history.push("/app/admin/total");
+          });
+        }
       } else {
         toast.error(
           "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
