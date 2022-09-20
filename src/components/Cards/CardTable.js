@@ -19,13 +19,6 @@ export default function CardTable({ color, name, data }) {
    *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
    */
 
-  const [currentData, setCurrentData] = useState([]);
-
-  useEffect(() => {
-    //console.log(name, data);
-    setCurrentData(data);
-  }, []);
-
   const setTitles = (currentTable) => {
     if (
       currentTable === "Cursos Sugeridos" ||
@@ -191,10 +184,10 @@ export default function CardTable({ color, name, data }) {
     ) {
       return (
         <>
-          {currentData.map((data, index) => (
+          {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.courseName}
+                {data.name}
               </td>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {data.category}
@@ -210,7 +203,7 @@ export default function CardTable({ color, name, data }) {
     if (currentTable === "Total Sugerencias") {
       return (
         <>
-          {currentData.map((data, index) => (
+          {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {data.category}
@@ -226,7 +219,7 @@ export default function CardTable({ color, name, data }) {
     if (currentTable === "Estudiantes con más sugerencias") {
       return (
         <>
-          {currentData.map((data, index) => (
+          {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {data.studentName}
@@ -242,7 +235,7 @@ export default function CardTable({ color, name, data }) {
     if (currentTable === "Cursos que he sugerido") {
       return (
         <>
-          {currentData.map((data, index) => (
+          {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {data.courseName}

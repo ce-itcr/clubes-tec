@@ -1,9 +1,22 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { sleep } from "../../assets/utils/Sleep";
+import { Suggestions } from "../../communication/Suggestions";
 import CardTable from "../../components/Cards/CardTable";
 
 export default function Home() {
-  let history = useHistory();
+  const [suggestions, setSuggestions] = useState([]);
+
+  let suggestionsClient = new Suggestions();
+
+  useEffect(() => {
+    getSuggestions();
+  }, []);
+
+  const getSuggestions = async () => {
+    const clientResponse = await suggestionsClient.getAllSuggestions();
+    setSuggestions(clientResponse.data);
+  };
+
   return (
     <>
       <div
@@ -15,13 +28,7 @@ export default function Home() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable
-            name="Cursos Sugeridos"
-            data={[
-              { courseName: "ArtesDramaticas", category: "Arte", qty: 10 },
-              { courseName: "ArtesLiterarias", category: "Arte", qty: 5 },
-            ]}
-          />
+          <CardTable name="Cursos Sugeridos" data={suggestions} />
         </div>
       </div>
     </>
