@@ -109,7 +109,7 @@ export default function CardTable({ color, name, data }) {
                 : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
             }
           >
-            studentName
+            Nombre de Estudiante
           </th>
           <th
             className={
@@ -286,43 +286,6 @@ export default function CardTable({ color, name, data }) {
       );
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <>
