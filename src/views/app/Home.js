@@ -23,15 +23,6 @@ export default function Home() {
             ]}
           />
         </div>
-        <a onClick={() => history.push("/app/admin/total")}>
-          Total de Sugerencias
-        </a>
-        <a onClick={() => history.push("/app/admin/students-stats")}>
-          Estadisticas Estudiantes
-        </a>
-        <a onClick={() => history.push("/app/admin/suggestions-stats")}>
-          Estadisticas Sugerencias
-        </a>
       </div>
     </>
   );

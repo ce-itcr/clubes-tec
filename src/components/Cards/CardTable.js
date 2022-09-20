@@ -67,9 +67,7 @@ export default function CardTable({ color, name, data }) {
         </>
       );
     }
-    if (
-      currentTable === "Total Sugerencias"
-    ) {
+    if (currentTable === "Total Sugerencias") {
       return (
         <>
           <th
@@ -96,9 +94,7 @@ export default function CardTable({ color, name, data }) {
       );
     }
 
-    if (
-      currentTable === "Estudiantes con más sugerencias"
-    ) {
+    if (currentTable === "Estudiantes con más sugerencias") {
       return (
         <>
           <th
@@ -124,9 +120,7 @@ export default function CardTable({ color, name, data }) {
         </>
       );
     }
-    if (
-      currentTable === "Cursos que he sugerido"
-    ) {
+    if (currentTable === "Cursos que he sugerido") {
       return (
         <>
           <th
@@ -151,9 +145,7 @@ export default function CardTable({ color, name, data }) {
           </th>
         </>
       );
-    }
-
-    else {
+    } else {
       return (
         <>
           <th
@@ -215,9 +207,7 @@ export default function CardTable({ color, name, data }) {
         </>
       );
     }
-    if (
-      currentTable === "Total Sugerencias"
-    ) {
+    if (currentTable === "Total Sugerencias") {
       return (
         <>
           {currentData.map((data, index) => (
@@ -233,9 +223,7 @@ export default function CardTable({ color, name, data }) {
         </>
       );
     }
-    if (
-      currentTable === "Estudiantes con más sugerencias"
-    ) {
+    if (currentTable === "Estudiantes con más sugerencias") {
       return (
         <>
           {currentData.map((data, index) => (
@@ -251,9 +239,7 @@ export default function CardTable({ color, name, data }) {
         </>
       );
     }
-    if (
-      currentTable === "Cursos que he sugerido"
-    ) {
+    if (currentTable === "Cursos que he sugerido") {
       return (
         <>
           {currentData.map((data, index) => (
@@ -268,9 +254,7 @@ export default function CardTable({ color, name, data }) {
           ))}
         </>
       );
-    }
-
-    else {
+    } else {
       return (
         <tr>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

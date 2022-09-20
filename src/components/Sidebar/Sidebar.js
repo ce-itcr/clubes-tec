@@ -3,9 +3,159 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-  
   const [collapseShow, setCollapseShow] = React.useState("hidden");
 
+  const setSidebarInfo = () => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData.userType === "student") {
+      return (
+        <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf("/app/home") !== -1
+                  ? "text-black hover:text-blueGray-700"
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/home"
+            >
+              <i
+                className={
+                  "fas fa-home mr-2 text-sm " +
+                  (window.location.href.indexOf("/app/home") !== -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Registro de Sugerencias
+            </Link>
+          </li>
+
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf("/app/profile") !== -1
+                  ? "text-black hover:text-blueGray-700 "
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/profile"
+            >
+              <i
+                className={
+                  "fas fa-user mr-2 text-sm " +
+                  (window.location.href.indexOf("/app/profile") !== -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Perfil
+            </Link>
+          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf("/app/admin/total") !== -1
+                  ? "text-black hover:text-blueGray-700"
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/admin/total"
+            >
+              <i
+                className={
+                  "fas fa-home mr-2 text-sm " +
+                  (window.location.href.indexOf("/app/admin/total") !== -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Total de Sugerencias
+            </Link>
+          </li>
+
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf("/app/admin/students-stats") !==
+                -1
+                  ? "text-black hover:text-blueGray-700 "
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/admin/students-stats"
+            >
+              <i
+                className={
+                  "fas fa-list mr-2 text-sm " +
+                  (window.location.href.indexOf("/app/admin/students-stats") !==
+                  -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Estadisticas Estudiantes
+            </Link>
+          </li>
+
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf(
+                  "/app/admin/suggestions-stats"
+                ) !== -1
+                  ? "text-black hover:text-blueGray-700 "
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/admin/suggestions-stats"
+            >
+              <i
+                className={
+                  "fas fa-list mr-2 text-sm " +
+                  (window.location.href.indexOf(
+                    "/app/admin/suggestions-stats"
+                  ) !== -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Estadisticas Sugerencias
+            </Link>
+          </li>
+
+          <li className="items-center">
+            <Link
+              className={
+                "text-xs uppercase py-3 font-bold block " +
+                (window.location.href.indexOf("/app/profile") !== -1
+                  ? "text-black hover:text-blueGray-700 "
+                  : "text-blueGray-800 hover:text-blueGray-600")
+              }
+              to="/app/profile"
+            >
+              <i
+                className={
+                  "fas fa-user mr-2 text-sm " +
+                  (window.location.href.indexOf("/app/profile") !== -1
+                    ? "opacity-75"
+                    : "text-blueGray-300")
+                }
+              ></i>{" "}
+              Perfil
+            </Link>
+          </li>
+          
+        </ul>
+      );
+    }
+  };
 
   return (
     <>
@@ -64,53 +214,7 @@ export default function Sidebar() {
             </h6>*/}
             {/* Navigation */}
 
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/app/home") !== -1
-                    ? "text-black hover:text-blueGray-700"
-                    : "text-blueGray-800 hover:text-blueGray-600")
-                  }
-                  to="/app/home"
-                >
-                  <i
-                    className={
-                      "fas fa-home mr-2 text-sm " +
-                      (window.location.href.indexOf("/app/home") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Registro de Sugerencias
-                </Link>
-              </li>
-
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/app/profile") !== -1
-                    ? "text-black hover:text-blueGray-700 "
-                    : "text-blueGray-800 hover:text-blueGray-600")
-                  }
-                  to="/app/profile"
-                >
-                  <i
-                    className={
-                      "fas fa-user mr-2 text-sm " +
-                      (window.location.href.indexOf("/app/profile") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Perfil
-                </Link>
-              </li>
-            </ul>
-
+            {setSidebarInfo()}
           </div>
         </div>
       </nav>
