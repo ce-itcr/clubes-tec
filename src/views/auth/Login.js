@@ -40,6 +40,7 @@ export default function Login() {
             section: clientResponse.data[0].section,
           })
         );
+        localStorage.setItem('activeSession', true);
         toast.success("Bienvenido a clubes-tec");
 
         sleep(2500).then(() => {
