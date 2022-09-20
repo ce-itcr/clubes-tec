@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "react-modal";
+import CreateSuggestion from "./Modals/CreateSuggestion";
 
 // components
+
+const customStyles = {
+  content: {
+    outline: "none",
+    top: "50%",
+    left: "58%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 export default function CardTable({ color, name, data }) {
   /**
@@ -18,6 +32,12 @@ export default function CardTable({ color, name, data }) {
    * Estadisticas sugerencias II: nombreCurso, categoria, cantidad de sugerencias
    *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
    */
+
+   const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
+
+   const openCreateSuggestionModal = () => {
+    setCreateSuggestionOpen(true);
+  };
 
   const setTitles = (currentTable) => {
     if (
@@ -138,41 +158,6 @@ export default function CardTable({ color, name, data }) {
           </th>
         </>
       );
-    } else {
-      return (
-        <>
-          <th
-            className={
-              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-              (color === "light"
-                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-            }
-          >
-            Nombre
-          </th>
-          <th
-            className={
-              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-              (color === "light"
-                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-            }
-          >
-            Categoria
-          </th>
-          <th
-            className={
-              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-              (color === "light"
-                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-            }
-          >
-            Cantidad de Sugerencias
-          </th>
-        </>
-      );
     }
   };
 
@@ -247,20 +232,22 @@ export default function CardTable({ color, name, data }) {
           ))}
         </>
       );
-    } else {
+    }
+  };
+
+  const setCreateSuggestion = (currentTable) => {
+    if (currentTable === "Cursos Sugeridos") {
       return (
-        <tr>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            $2,500 USD
-          </td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            $2,500 USD
-          </td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-          </td>
-        </tr>
+        <button
+          className="bg-darkBlue-001 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          onClick={openCreateSuggestionModal}
+        >
+          <i className="fas fa-plus"></i> Crear Sugerencia
+        </button>
       );
+    } else {
+      return <></>;
     }
   };
 
@@ -284,6 +271,7 @@ export default function CardTable({ color, name, data }) {
                 {name}
               </h3>
             </div>
+            {setCreateSuggestion(name)}
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
@@ -296,6 +284,13 @@ export default function CardTable({ color, name, data }) {
           </table>
         </div>
       </div>
+      <Modal
+        isOpen={createSuggestionOpen}
+        onRequestClose={openCreateSuggestionModal}
+        style={customStyles}
+      >
+        <CreateSuggestion />
+      </Modal>
     </>
   );
 }
