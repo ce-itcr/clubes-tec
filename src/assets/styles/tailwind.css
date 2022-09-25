@@ -1086,6 +1086,11 @@ select {
   background-color: rgba(213, 213, 213);
 }
 
+.bg-defaultGray{
+  --tw-bg-opacity: 1;
+  background-color: rgba(160, 174, 192, var(--tw-bg-opacity));
+}
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));

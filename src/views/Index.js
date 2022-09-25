@@ -15,13 +15,19 @@ export default function Index() {
                 PREPARACIÓN DE CLUBES.
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                felis neque, interdum et ornare feugiat, aliquet vestibulum
-                metus. Donec aliquet, elit quis venenatis viverra, neque mi
-                efficitur ligula, et dictum tortor lorem at enim. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Aliquam vel lorem enim. Cras ullamcorper leo
-                nec porttitor maximus. Ut maximus interdum leo non sagittis.
+                Este sitio web es propiedad de{" "}
+                <a
+                  className="text-darkBlue-001"
+                  href="https://github.com/ce-itcr"
+                  target="_blank"
+                >
+                  ce-itcr{" "}
+                </a>
+                corresponde al Proyecto I del curso de Bases de Datos Avanzadas,
+                el mismo pretende desarrollar un sistema donde los alumnos
+                pueden sugerir clubes que se van ofrecer el próximo año como
+                clases extracurriculares, las categorías son: Idiomas, Artes,
+                Deportes, Música, Otros.
               </p>
               <div className="mt-12" to="/auth">
                 <button
@@ -32,16 +38,28 @@ export default function Index() {
                     <i class="fas fa-sign-in-alt"></i> Ingresar
                   </a>
                 </button>
+                <a
+                  href="https://github.com/ce-itcr/clubes-tec"
+                  className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-defaultGray uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  target="_blank"
+                >
+                  <i class="fas fa-info"></i> Info
+                </a>
               </div>
-              
             </div>
-       
           </div>
-          
         </div>
+
+        <img
+          className="absolute top-0 b-auto right-0 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px"
+          src={require("../assets/img/landing-pattern.png").default}
+          alt="..."
+        />
       </section>
-      <p className=" text-lg leading-relaxed text-white bg-white" style={{paddingTop:100}}> 
-              </p>
+      <p
+        className=" text-lg leading-relaxed text-white bg-white"
+        style={{ paddingTop: 100 }}
+      ></p>
     </>
   );
 }
