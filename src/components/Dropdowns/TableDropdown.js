@@ -19,7 +19,6 @@ const TableDropdown = () => {
     <>
       <a
         className="text-blueGray-500 py-1 px-3"
-        href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -36,7 +35,6 @@ const TableDropdown = () => {
         }
       >
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
@@ -45,7 +43,6 @@ const TableDropdown = () => {
           Action
         </a>
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
@@ -54,7 +51,6 @@ const TableDropdown = () => {
           Another action
         </a>
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }

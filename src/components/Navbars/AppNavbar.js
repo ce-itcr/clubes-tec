@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function AppNavbar() {
-
-  const [navbarTitle, setNavbarTitle] = useState('');
+  const [navbarTitle, setNavbarTitle] = useState("");
 
   useEffect(() => {
     getTitle();
@@ -10,7 +9,7 @@ export default function AppNavbar() {
 
   const getTitle = () => {
     setNavbarTitle(window.location.pathname);
-  }
+  };
 
   return (
     <>
@@ -20,7 +19,6 @@ export default function AppNavbar() {
           {/* Brand */}
           <a
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
             {navbarTitle}

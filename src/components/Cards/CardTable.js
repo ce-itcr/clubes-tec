@@ -33,7 +33,6 @@ export default function CardTable({ color, name, data }) {
    *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
    */
 
-
   const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
 
   const openCreateSuggestionModal = () => {
@@ -45,8 +44,53 @@ export default function CardTable({ color, name, data }) {
   };
 
   const setTitles = (currentTable) => {
+    if (currentTable === "Cursos Sugeridos") {
+      return (
+        <>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Nombre
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Categoria
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Cantidad de Sugerencias
+          </th>
+          <th
+            className={
+              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+              (color === "light"
+                ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+            }
+          >
+            Sugerir
+          </th>
+        </>
+      );
+    }
     if (
-      currentTable === "Cursos Sugeridos" ||
       currentTable === "Top 5 clubes más sugeridos" ||
       currentTable === "Top 3 clubes menos sugeridos"
     ) {
@@ -167,8 +211,34 @@ export default function CardTable({ color, name, data }) {
   };
 
   const setData = (currentTable) => {
+    if (currentTable === "Cursos Sugeridos") {
+      return (
+        <>
+          {data.map((data, index) => (
+            <tr key={index}>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.name}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.category}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {data.qty}
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <img
+                  alt="..."
+                  src={require("../../assets/img/star-gray.png").default}
+                  className=" h-auto align-middle border-none absolute "
+                  style={{ width: "1.2%" }}
+                />
+              </td>
+            </tr>
+          ))}
+        </>
+      );
+    }
     if (
-      currentTable === "Cursos Sugeridos" ||
       currentTable === "Top 5 clubes más sugeridos" ||
       currentTable === "Top 3 clubes menos sugeridos"
     ) {
@@ -296,8 +366,11 @@ export default function CardTable({ color, name, data }) {
         shouldCloseOnEsc={true}
         style={customStyles}
       >
-        <div style={{width: 500}}>
-          <CreateSuggestion onPress={closeSuggestionModal} reOpenModal={openCreateSuggestionModal}/>
+        <div style={{ width: 500 }}>
+          <CreateSuggestion
+            onPress={closeSuggestionModal}
+            reOpenModal={openCreateSuggestionModal}
+          />
         </div>
       </Modal>
     </>
