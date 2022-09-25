@@ -17,7 +17,7 @@ const customStyles = {
   },
 };
 
-export default function CreateSuggestion() {
+export default function CreateSuggestion({onPress}) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [courseName, setCourseName] = useState("");
@@ -49,16 +49,26 @@ export default function CreateSuggestion() {
   };
 
   const createSuggestion = () => {
-    toast.success('Sugerencia creada exitosamente');
-    sleep(2000).then(()=>{
-        closeModal();
-        window.location.reload();
-    })
-  }
+    toast.success("Sugerencia creada exitosamente");
+    sleep(2000).then(() => {
+      closeModal();
+      window.location.reload();
+    });
+  };
 
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+        <div className="rounded-t bg-white ">
+          <button type="button" onClick={onPress}>
+            <img
+              alt="..."
+              src={require("../../../assets/img/close.png").default}
+              className=" h-auto align-middle border-none absolute "
+              style={{width: '8%', marginLeft: '85%'}}
+            />
+          </button>
+        </div>
         <div className="rounded-t bg-white mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">
@@ -86,7 +96,7 @@ export default function CreateSuggestion() {
               <div className="w-full lg:w-12/12 px-4">
                 <div className="relative w-full mb-3">
                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                    Laboratorio
+                    Categoria
                   </label>
                   <select
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -137,9 +147,7 @@ export default function CreateSuggestion() {
           <h2>
             <b>Preparación de Clubes</b>
           </h2>
-          <div>
-            ¿Está seguro que desea crear la sugerencia?
-          </div>
+          <div>¿Está seguro que desea crear la sugerencia?</div>
           <form style={{ marginTop: "20px" }}>
             <input />
             <button

@@ -9,7 +9,7 @@ const customStyles = {
   content: {
     outline: "none",
     top: "50%",
-    left: "58%",
+    left: "55%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
@@ -37,6 +37,10 @@ export default function CardTable({ color, name, data }) {
 
    const openCreateSuggestionModal = () => {
     setCreateSuggestionOpen(true);
+  };
+
+  const closeSuggestionModal = () => {
+    setCreateSuggestionOpen(false);
   };
 
   const setTitles = (currentTable) => {
@@ -286,10 +290,12 @@ export default function CardTable({ color, name, data }) {
       </div>
       <Modal
         isOpen={createSuggestionOpen}
-        onRequestClose={openCreateSuggestionModal}
+        onRequestClose={closeSuggestionModal}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
         style={customStyles}
       >
-        <CreateSuggestion />
+        <CreateSuggestion onPress={closeSuggestionModal}/>
       </Modal>
     </>
   );
