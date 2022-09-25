@@ -16,8 +16,8 @@ export default function SuggestionsStats() {
           <CardTable
             name="Top 5 clubes más sugeridos"
             data={[
-              { courseName: "ArtesDramaticas", category: "Arte", qty: 10 },
-              { courseName: "ArtesLiterarias", category: "Arte", qty: 5 },
+              { name: "ArtesDramaticas", category: "Arte", qty: 10 },
+              { name: "ArtesLiterarias", category: "Arte", qty: 5 },
             ]}
           />
         </div>
@@ -25,8 +25,8 @@ export default function SuggestionsStats() {
           <CardTable
             name="Top 3 clubes menos sugeridos"
             data={[
-              { courseName: "ArtesDramaticas", category: "Arte", qty: 10 },
-              { courseName: "ArtesLiterarias", category: "Arte", qty: 5 },
+              { name: "ArtesDramaticas", category: "Arte", qty: 10 },
+              { name: "ArtesLiterarias", category: "Arte", qty: 5 },
             ]}
           />
         </div>

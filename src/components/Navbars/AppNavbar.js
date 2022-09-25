@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import UserDropdown from "../Dropdowns/UserDropdown";
 
 export default function AppNavbar() {
   const [navbarTitle, setNavbarTitle] = useState("");
@@ -24,9 +25,9 @@ export default function AppNavbar() {
             {navbarTitle}
           </a>
 
-          {/*<ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <ProfileDropdown />
-          </ul>*/}
+          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+            <UserDropdown />
+          </ul>
         </div>
       </nav>
       {/* End Navbar */}
