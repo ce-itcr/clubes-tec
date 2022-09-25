@@ -33,9 +33,10 @@ export default function CardTable({ color, name, data }) {
    *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
    */
 
-   const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
 
-   const openCreateSuggestionModal = () => {
+  const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
+
+  const openCreateSuggestionModal = () => {
     setCreateSuggestionOpen(true);
   };
 
@@ -295,7 +296,9 @@ export default function CardTable({ color, name, data }) {
         shouldCloseOnEsc={true}
         style={customStyles}
       >
-        <CreateSuggestion onPress={closeSuggestionModal}/>
+        <div style={{width: 500}}>
+          <CreateSuggestion onPress={closeSuggestionModal} reOpenModal={openCreateSuggestionModal}/>
+        </div>
       </Modal>
     </>
   );

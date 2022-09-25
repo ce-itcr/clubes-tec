@@ -17,11 +17,13 @@ const customStyles = {
   },
 };
 
-export default function CreateSuggestion({onPress}) {
+export default function CreateSuggestion({ onPress, reOpenModal }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [courseName, setCourseName] = useState("");
   const [courseCategory, setCourseCategory] = useState("");
+
+  const [currentType, setCurrentType] = useState("");
 
   const handleInputForSuggestion = async (e) => {
     var value = e.target.value;
@@ -36,24 +38,35 @@ export default function CreateSuggestion({onPress}) {
   const openModal = () => {
     setIsOpen(true);
   };
+
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  const verifyInputData = () => {
+  const verifyInputData = (type) => {
     if (courseName === "" || courseCategory === "") {
       toast.error("Debe llenar todos los espacios");
     } else {
+      setCurrentType(type);
       openModal();
     }
   };
 
   const createSuggestion = () => {
-    toast.success("Sugerencia creada exitosamente");
-    sleep(2000).then(() => {
-      closeModal();
-      window.location.reload();
-    });
+    console.log(currentType);
+    if (currentType !== "many") {
+      toast.success("Sugerencia creada exitosamente");
+      sleep(2000).then(() => {
+        closeModal();
+        window.location.reload();
+      });
+    } else {
+      toast.success("Sugerencia creada exitosamente");
+      sleep(2000).then(() => {
+        closeModal();
+        reOpenModal();
+      });
+    }
   };
 
   return (
@@ -65,7 +78,7 @@ export default function CreateSuggestion({onPress}) {
               alt="..."
               src={require("../../../assets/img/close.png").default}
               className=" h-auto align-middle border-none absolute "
-              style={{width: '8%', marginLeft: '85%'}}
+              style={{ width: "6%", marginLeft: "90%" }}
             />
           </button>
         </div>
@@ -86,6 +99,7 @@ export default function CreateSuggestion({onPress}) {
                     Nombre
                   </label>
                   <input
+                    id="suggestionNameInput"
                     type="string"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Nombre Sugerencia"
@@ -126,7 +140,7 @@ export default function CreateSuggestion({onPress}) {
                   <button
                     type="button"
                     className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-darkBlue-001 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all w-full duration-150"
-                    onClick={verifyInputData}
+                    onClick={() => verifyInputData("one")}
                   >
                     <i class="fas fa-plus"></i> Crear Sugerencia
                   </button>
@@ -135,6 +149,19 @@ export default function CreateSuggestion({onPress}) {
             </div>
 
             <hr className="mt-6 border-b-1 border-blueGray-300" />
+            <div
+              className="w-full lg:w-12/12 px-4"
+              style={{ marginTop: 10, paddingLeft: "60%" }}
+            >
+              <label
+                className="block uppercase text-blueGray-500 text-xs font-bold mb-2"
+                onClick={() => {
+                  verifyInputData("many");
+                }}
+              >
+                Crear otra sugerencia
+              </label>
+            </div>
           </form>
         </div>
       </div>
