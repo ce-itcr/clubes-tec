@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 import { sleep } from "../../../assets/utils/Sleep";
+import { Suggestions } from "../../../communication/Suggestions";
 
 // components
 
@@ -25,6 +26,9 @@ export default function CreateSuggestion({ onPress, reOpenModal }) {
 
   const [currentType, setCurrentType] = useState("");
 
+  let suggestionsClient = new Suggestions();
+
+
   const handleInputForSuggestion = async (e) => {
     var value = e.target.value;
     setCourseName(value);
@@ -43,10 +47,12 @@ export default function CreateSuggestion({ onPress, reOpenModal }) {
     setIsOpen(false);
   };
 
-  const verifyInputData = (type) => {
+  const verifyInputData = async (type) => {
     if (courseName === "" || courseCategory === "") {
       toast.error("Debe llenar todos los espacios");
     } else {
+      const clientResponse = await suggestionsClient.createSuggestions(courseName, courseCategory, 'agven');
+      console.log(clientResponse)
       setCurrentType(type);
       openModal();
     }
@@ -117,11 +123,11 @@ export default function CreateSuggestion({ onPress, reOpenModal }) {
                     onChange={handleInputForCategory}
                   >
                     <option value="option">Seleccione una opción</option>
-                    <option value="laboratory">Idiomas</option>
-                    <option value="scheduleSection">Artes</option>
-                    <option value="week">Deportes</option>
-                    <option value="week">Musica</option>
-                    <option value="week">Otros</option>
+                    <option value="Idiomas">Idiomas</option>
+                    <option value="Artes">Artes</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Musica">Musica</option>
+                    <option value="Otros">Otros</option>
                   </select>
                 </div>
               </div>

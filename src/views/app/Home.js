@@ -21,14 +21,15 @@ export default function Home() {
     setCategory(value);
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     getSuggestions();
   }, []);
 
   const getSuggestions = async () => {
     const clientResponse = await suggestionsClient.getAllSuggestions();
+    console.log(clientResponse)
     setSuggestions(clientResponse.data);
-  };*/
+  };
 
   const searchSuggestions = async () => {
     if (category === "option" || category === "") {

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import { sleep } from "../../assets/utils/Sleep";
+import { Auth } from "../../communication/Auth";
 
 export default function Register() {
+
   let history = useHistory();
 
   const [userId, setUserId] = useState("");
@@ -11,6 +13,8 @@ export default function Register() {
   const [fullName, setFullName] = useState("");
   const [section, setSection] = useState("");
   const [userTypeEntry, setUserTypeEntry] = useState("");
+
+  let authClient = new Auth();
 
   const sections = [
     { name: "7A" },
@@ -32,7 +36,7 @@ export default function Register() {
     { name: "11B" },
     { name: "11C" },
   ];
-  const userTypes = [{ name: "Administrador" }, { name: "Estudiante" }];
+  const userTypes = [{ name: "Administrador", id:"admin" }, { name: "Estudiante", id:'student' }];
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordIconShown, setPasswordIconShown] = useState(false);
@@ -71,6 +75,11 @@ export default function Register() {
     ) {
       toast.error("Debe llenar todos los espacios.");
     } else {
+      if(userTypeEntry === "admin"){
+        setSection("")
+      }
+      const clientResponse = await authClient.creatUser(fullName,userId,password,section,userTypeEntry);
+      console.log(clientResponse);
       toast.success("Usuario Registrado exitosamente");
       sleep(2500).then(() => {
         history.push("/auth");
@@ -160,7 +169,7 @@ export default function Register() {
                     >
                       <option value="option">Seleccione una opción</option>
                       {userTypes.map((data) => (
-                        <option value={data.name}>{data.name}</option>
+                        <option value={data.id}>{data.name}</option>
                       ))}
                       ;
                     </select>

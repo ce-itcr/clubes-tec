@@ -28,23 +28,23 @@ export default function Login() {
     if (userId === "" || password === "") {
       toast.error("Debe llenar todos los espacios.");
     } else {
-      /*const clientResponse = await authClient.verifyUserPost(userId, password);
+      const clientResponse = await authClient.verifyUserPost(userId, password);
       console.log(clientResponse);
       if (clientResponse.data.length !== 0) {
         console.log(clientResponse.data);
         localStorage.setItem(
           "userData",
           JSON.stringify({
-            fullName: clientResponse.data[0].fullName,
-            username: clientResponse.data[0].username,
-            userType: clientResponse.data[0].userType,
-            section: clientResponse.data[0].section,
+            fullName: clientResponse.data.fullname,
+            username: clientResponse.data.user,
+            section: clientResponse.data.section,
+            userType: clientResponse.data.userType
           })
         );
         localStorage.setItem("activeSession", true);
         toast.success("Bienvenido a clubes-tec");
 
-        if (clientResponse.data[0].userType === "student") {
+        if (clientResponse.data.userType === "Student") {
           sleep(2500).then(() => {
             history.push("/app/home");
           });
@@ -58,9 +58,9 @@ export default function Login() {
           "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
         );
       }}
-    }*/
+    }
     
-      localStorage.setItem(
+    /* localStorage.setItem(
         "userData",
         JSON.stringify({
           fullName: "Angelo Ortiz Vega",
@@ -75,7 +75,7 @@ export default function Login() {
         history.push("/app/home");
       });
     }
-  };
+  };*/
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
