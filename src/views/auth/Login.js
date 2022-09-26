@@ -28,9 +28,9 @@ export default function Login() {
     if (userId === "" || password === "") {
       toast.error("Debe llenar todos los espacios.");
     } else {
-      /*const clientResponse = await authClient.verifyUser(userId, password);
+      const clientResponse = await authClient.verifyUserPost(userId, password);
       if (clientResponse.data.length !== 0) {
-        console.log(clientResponse.data[0]);
+        console.log(clientResponse.data);
         localStorage.setItem(
           "userData",
           JSON.stringify({
@@ -57,8 +57,8 @@ export default function Login() {
           "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
         );
       }
-    }*/
-
+    }
+/*
       localStorage.setItem(
         "userData",
         JSON.stringify({
@@ -73,7 +73,7 @@ export default function Login() {
       sleep(2500).then(() => {
         history.push("/app/home");
       });
-    }
+    }*/
   };
 
   const togglePassword = () => {

@@ -1,1 +1,1 @@
-export const apiUrl = 'https://sheet.best/api/sheets/bc690068-05d0-47fa-a7fb-79b02e1a093b';
+export const apiUrl = 'https://localhost:44314/';

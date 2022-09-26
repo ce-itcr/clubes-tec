@@ -2,10 +2,43 @@ import axios from "axios";
 import { apiUrl } from "../assets/utils/constants";
 
 export class Auth {
-  async verifyUser(username, password) {
+  async verifyUser(user, password) {
     const requestUrl =
-      apiUrl + "/users/search?username=" + username + "&password=" + password;
+      apiUrl + "api/user/login/?user=" + user + "&password=" + password;
     const response = await axios.get(requestUrl);
     return response;
   }
+
+  async verifyUserPost(user, password) {
+      const requestUrl =
+      apiUrl + "api/user/login"
+      const response = await axios.post(requestUrl,{user: user,password: password});
+      console.log(response)
+      return response;
+  }
+  
+
+  async singUp(fullName,user,password,section,userType){
+    const requestUrl =
+    apiUrl + 'api/user/signup/?fullName='+fullName + '&user='+ user
+    + '&password=' + password + '&section=' + section +
+    '&userType=' + userType;
+    const response = await axios.get(requestUrl);
+    return response;
+  }
+
+  async findUser(user){
+    const requestUrl =
+    apiUrl + 'api/student/info/?user='+ user;
+    const response = await axios.get(requestUrl);
+    return response;
+  }
+
+  async getUserSuggestion(user){
+    const requestUrl =
+    apiUrl + 'api/student/suggestions/?user='+ user;
+    const response = await axios.get(requestUrl);
+    return response;
+  }
+
 }
