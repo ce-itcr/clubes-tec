@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import CreateSuggestion from "./Modals/CreateSuggestion";
-
-// components
+import toast from "react-hot-toast";
 
 const customStyles = {
   content: {
@@ -34,6 +33,10 @@ export default function CardTable({ color, name, data }) {
    */
 
   const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
+  const [addToFavoritesOpen, setAddToFavoritesOpen] = useState(false);
+
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [currentName, setCurrentName] = useState("");
 
   const openCreateSuggestionModal = () => {
     setCreateSuggestionOpen(true);
@@ -41,6 +44,48 @@ export default function CardTable({ color, name, data }) {
 
   const closeSuggestionModal = () => {
     setCreateSuggestionOpen(false);
+  };
+
+  const openAddToFavoritesModal = (courseName) => {
+    setAddToFavoritesOpen(true);
+  };
+
+  const closeAddToFavoritesModal = () => {
+    setAddToFavoritesOpen(false);
+  };
+
+  const suggestCourse = async () => {
+    console.log(currentCategory, currentName);
+    closeAddToFavoritesModal();
+  };
+  
+  const setStarFunction = (name, courseName, courseCategory) => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    if (name === userData.username) {
+      return (
+        <img
+          alt="..."
+          src={require("../../assets/img/star.png").default}
+          className=" h-auto align-middle border-none absolute "
+          onClick={() => toast.error("Curso sugerido anteriormente.")}
+          style={{ width: "1.7%" }}
+        />
+      );
+    } else {
+      return (
+        <img
+          alt="..."
+          src={require("../../assets/img/star-gray.png").default}
+          className=" h-auto align-middle border-none absolute "
+          onClick={() => {
+            openAddToFavoritesModal();
+            setCurrentName(courseName);
+            setCurrentCategory(courseCategory);
+          }}
+          style={{ width: "1.7%" }}
+        />
+      );
+    }
   };
 
   const setTitles = (currentTable) => {
@@ -226,12 +271,9 @@ export default function CardTable({ color, name, data }) {
                 {data.qty}
               </td>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                <img
-                  alt="..."
-                  src={require("../../assets/img/star-gray.png").default}
-                  className=" h-auto align-middle border-none absolute "
-                  style={{ width: "1.2%" }}
-                />
+                {data.suggesters.map((suggesterData) =>
+                  setStarFunction(suggesterData, data.name, data.category)
+                )}
               </td>
             </tr>
           ))}
@@ -372,6 +414,35 @@ export default function CardTable({ color, name, data }) {
             reOpenModal={openCreateSuggestionModal}
           />
         </div>
+      </Modal>
+      <Modal
+        isOpen={addToFavoritesOpen}
+        onRequestClose={closeAddToFavoritesModal}
+        style={customStyles}
+      >
+        <h2>
+          <b>Preparación de Clubes</b>
+        </h2>
+        <div>¿Seguro que desea sugerir el curso mencionado?</div>
+        <form style={{ marginTop: "20px" }}>
+          <button
+            onClick={closeAddToFavoritesModal}
+            style={{
+              marginRight: "20px",
+              marginLeft: "200px",
+              color: "#d4443c",
+            }}
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            onClick={suggestCourse}
+            style={{ color: "#1db954" }}
+          >
+            Sugerir
+          </button>
+        </form>
       </Modal>
     </>
   );

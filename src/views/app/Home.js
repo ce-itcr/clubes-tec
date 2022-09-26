@@ -23,19 +23,17 @@ export default function Home() {
 
   /*useEffect(() => {
     getSuggestions();
-  }, []);*/
+  }, []);
 
   const getSuggestions = async () => {
     const clientResponse = await suggestionsClient.getAllSuggestions();
     setSuggestions(clientResponse.data);
-  };
+  };*/
 
   const searchSuggestions = async () => {
     if (category === "option" || category === "") {
       toast.error("Debe seleccionar alguna opción");
-    } /*if (filter === ''){
-      //getSuggestions();
-    }*/ else {
+    } else {
       toast.success("Mostrando resultados...");
     }
   };
@@ -106,9 +104,9 @@ export default function Home() {
           <CardTable
             name="Cursos Sugeridos"
             data={[
-              { name: "ArtesDramaticas", category: "Arte", qty: 10 },
-              { name: "ArtesLiterarias", category: "Arte", qty: 5 },
-              { name: "Español", category: "Idiomas", qty: 5 },
+              { name: "ArtesDramaticas", category: "Arte", qty: 10, suggesters: ["jonex", "jsolis"] },
+              { name: "ArtesLiterarias", category: "Arte", qty: 5, suggesters: ["jonex", "jsolis"]},
+              { name: "Español", category: "Idiomas", qty: 5, suggesters: ["aortiz"] },
             ]}
           />
         </div>

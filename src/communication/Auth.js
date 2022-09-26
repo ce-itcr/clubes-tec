@@ -10,35 +10,45 @@ export class Auth {
   }
 
   async verifyUserPost(user, password) {
-      const requestUrl =
-      apiUrl + "api/user/login"
-      const response = await axios.post(requestUrl,{user: user,password: password});
-      console.log(response)
-      return response;
+    const requestUrl = apiUrl + "api/user/login";
+    const headers = { "Content-Type": "application/json" };
+    const response = await axios
+      .post(requestUrl, {
+        user: user,
+        password: password,
+      }, headers)
+      .catch((error) => {
+        return error.response;
+      });
+    return response;
   }
-  
 
-  async singUp(fullName,user,password,section,userType){
+  async singUp(fullName, user, password, section, userType) {
     const requestUrl =
-    apiUrl + 'api/user/signup/?fullName='+fullName + '&user='+ user
-    + '&password=' + password + '&section=' + section +
-    '&userType=' + userType;
+      apiUrl +
+      "api/user/signup/?fullName=" +
+      fullName +
+      "&user=" +
+      user +
+      "&password=" +
+      password +
+      "&section=" +
+      section +
+      "&userType=" +
+      userType;
     const response = await axios.get(requestUrl);
     return response;
   }
 
-  async findUser(user){
-    const requestUrl =
-    apiUrl + 'api/student/info/?user='+ user;
+  async findUser(user) {
+    const requestUrl = apiUrl + "api/student/info/?user=" + user;
     const response = await axios.get(requestUrl);
     return response;
   }
 
-  async getUserSuggestion(user){
-    const requestUrl =
-    apiUrl + 'api/student/suggestions/?user='+ user;
+  async getUserSuggestion(user) {
+    const requestUrl = apiUrl + "api/student/suggestions/?user=" + user;
     const response = await axios.get(requestUrl);
     return response;
   }
-
 }
