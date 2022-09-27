@@ -28,7 +28,6 @@ export default function CreateSuggestion({ onPress, reOpenModal }) {
 
   let suggestionsClient = new Suggestions();
 
-
   const handleInputForSuggestion = async (e) => {
     var value = e.target.value;
     setCourseName(value);
@@ -51,27 +50,53 @@ export default function CreateSuggestion({ onPress, reOpenModal }) {
     if (courseName === "" || courseCategory === "") {
       toast.error("Debe llenar todos los espacios");
     } else {
-      const clientResponse = await suggestionsClient.createSuggestions(courseName, courseCategory, 'agven');
-      console.log(clientResponse)
+      /*const clientResponse = await suggestionsClient.createSuggestions(courseName, courseCategory, 'agven');
+      console.log(clientResponse)*/
       setCurrentType(type);
       openModal();
     }
   };
 
-  const createSuggestion = () => {
-    console.log(currentType);
+  const createSuggestion = async () => {
+    //console.log(currentType);
+    let userData = JSON.parse(localStorage.getItem("userData"));
     if (currentType !== "many") {
-      toast.success("Sugerencia creada exitosamente");
-      sleep(2000).then(() => {
-        closeModal();
-        window.location.reload();
-      });
+      const clientResponse = await suggestionsClient.createSuggestions(
+        courseName,
+        courseCategory,
+        userData.username
+      );
+      //console.log(clientResponse)
+      if (clientResponse.data === "ERROR") {
+        toast.error(
+          "Actualmente existe un curso con las especificaciones indicadas"
+        );
+      } else {
+        toast.success("Sugerencia creada exitosamente");
+        sleep(2000).then(() => {
+          closeModal();
+          window.location.reload();
+        });
+      }
+
     } else {
-      toast.success("Sugerencia creada exitosamente");
-      sleep(2000).then(() => {
-        closeModal();
-        reOpenModal();
-      });
+      const clientResponse = await suggestionsClient.createSuggestions(
+        courseName,
+        courseCategory,
+        userData.username
+      );
+      //console.log(clientResponse)
+      if (clientResponse.data === "ERROR") {
+        toast.error(
+          "Actualmente existe un curso con las especificaciones indicadas"
+        );
+      } else {
+        toast.success("Sugerencia creada exitosamente");
+        sleep(2000).then(() => {
+          closeModal();
+          reOpenModal();
+        });
+      }
     }
   };
 

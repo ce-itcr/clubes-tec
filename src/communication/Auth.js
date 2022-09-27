@@ -12,7 +12,7 @@ export class Auth {
         user : user1,
         password : password1
         });
-      console.log(response)
+      //console.log(response)
       return response;
   }
 
@@ -28,7 +28,7 @@ export class Auth {
         section: section1,
         userType: userType1
       });
-    console.log(response)
+    //console.log(response)
     return response;
   }
 
@@ -38,7 +38,7 @@ export class Auth {
       {
         user: user
       });
-    console.log(response)
+    //console.log(response)
     return response;
   }
 

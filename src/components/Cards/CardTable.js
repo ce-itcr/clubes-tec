@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import CreateSuggestion from "./Modals/CreateSuggestion";
 import toast from "react-hot-toast";
+import { Suggestions } from "../../communication/Suggestions";
+import { sleep } from "../../assets/utils/Sleep";
 
 const customStyles = {
   content: {
@@ -32,6 +34,8 @@ export default function CardTable({ color, name, data }) {
    *                    [{courseName:ArtesDramaticas, category:Arte, qty:10},{courseName:ArtesLiterarias, category:Arte, qty:5}]
    */
 
+   let suggestionsClient = new Suggestions();
+
   const [createSuggestionOpen, setCreateSuggestionOpen] = useState(false);
   const [addToFavoritesOpen, setAddToFavoritesOpen] = useState(false);
 
@@ -46,7 +50,7 @@ export default function CardTable({ color, name, data }) {
     setCreateSuggestionOpen(false);
   };
 
-  const openAddToFavoritesModal = (courseName) => {
+  const openAddToFavoritesModal = () => {
     setAddToFavoritesOpen(true);
   };
 
@@ -55,8 +59,25 @@ export default function CardTable({ color, name, data }) {
   };
 
   const suggestCourse = async () => {
-    console.log(currentCategory, currentName);
-    closeAddToFavoritesModal();
+    //console.log(currentCategory, currentName);
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    const clientResponse = await suggestionsClient.updateSuggestions(
+      currentName,
+      currentCategory,
+      userData.username
+    );
+    if (clientResponse.data === "ERROR") {
+      toast.error(
+        "No puede sugerir el curso porque usted lo creó"
+      );
+    } else {
+      toast.success("Sugerencia exitosa");
+      sleep(2000).then(() => {
+        closeAddToFavoritesModal();
+        window.location.reload();
+      });
+    }
+    //closeAddToFavoritesModal();
   };
   
   const setStarFunction = (name, courseName, courseCategory) => {
@@ -340,7 +361,7 @@ export default function CardTable({ color, name, data }) {
           {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.courseName}
+                {data.name}
               </td>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 {data.category}

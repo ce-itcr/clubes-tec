@@ -1,26 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { Auth } from "../../communication/Auth";
 import CardProfile from "../../components/Cards/CardProfile";
 import CardTable from "../../components/Cards/CardTable";
 
 export default function Profile() {
+  const [suggestions, setSuggestions] = useState([]);
+
+  let authClient = new Auth();
+
+  useEffect(() => {
+    getMySuggestions();
+  }, []);
+
+  const getMySuggestions = async () => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    const clientResponse = await authClient.findSuggestionsUser(
+      userData.username
+    );
+    //console.log("🚀 ~ file: Profile.js ~ line 14 ~ setMySuggestions ~ clientResponse", clientResponse)
+    setSuggestions(clientResponse.data);
+  };
 
   const setMySuggestions = () => {
     let userData = JSON.parse(localStorage.getItem("userData"));
+
     if (userData.userType === "student") {
-      return(
-        <CardTable
-            name="Cursos que he sugerido"
-            data={[
-              { courseName: "ArtesDramaticas", category: "Arte" },
-              { courseName: "ArtesLiterarias", category: "Arte" },
-            ]}
-          />
-      )
+      return <CardTable name="Cursos que he sugerido" data={suggestions} />;
     } else {
-      return(
-        <></>
-      )
+      return <></>;
     }
   };
 
