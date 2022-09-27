@@ -11,7 +11,7 @@ export class Auth {
     return response;
   }
 
-  async creatUser(fullName1, user1, password1, section1, userType1) {
+  async createUser(fullName1, user1, password1, section1, userType1) {
     const requestUrl = apiUrl + "api/user/signup";
     const response = await axios.post(requestUrl, {
       fullname: fullName1,

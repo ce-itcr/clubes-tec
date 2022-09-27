@@ -80,18 +80,23 @@ export default function Register() {
       if (userTypeEntry === "admin") {
         setSection("");
       }
-      const clientResponse = await authClient.creatUser(
+      const clientResponse = await authClient.createUser(
         fullName,
         userId,
         password,
         section,
         userTypeEntry
       );
-      console.log(clientResponse);
-      toast.success("Usuario Registrado exitosamente");
-      sleep(2500).then(() => {
-        history.push("/auth");
-      });
+      if (clientResponse.data === "ERROR") {
+        toast.error(
+          "Actualmente existe un usuario con el mismo Nombre de Usuario"
+        );
+      } else {
+        toast.success("Usuario Registrado exitosamente");
+        sleep(2500).then(() => {
+          history.push("/auth");
+        });
+      }
     }
   };
 
