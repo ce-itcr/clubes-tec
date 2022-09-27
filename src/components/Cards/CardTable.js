@@ -329,10 +329,10 @@ export default function CardTable({ color, name, data }) {
           {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.category}
+                {data.name}
               </td>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.qty}
+                {data.amount}
               </td>
             </tr>
           ))}
@@ -345,10 +345,10 @@ export default function CardTable({ color, name, data }) {
           {data.map((data, index) => (
             <tr key={index}>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.studentName}
+                {data.fullname}
               </td>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                {data.qty}
+                {data.amount}
               </td>
             </tr>
           ))}

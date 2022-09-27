@@ -49,11 +49,12 @@ export default function CardProfile() {
     let userData = JSON.parse(localStorage.getItem("userData"));
     setFullName(userData.fullName);
     setUsername(userData.username);
-    setSection(userData.section);
     if (userData.userType === "student") {
       setUserType("Estudiante");
+      setSection(userData.section);
     } else {
       setUserType("Administrador");
+      setSection("N/A");
     }
   }, []);
 
@@ -89,7 +90,7 @@ export default function CardProfile() {
               className="mb-2 text-blueGray-600"
               style={{ paddingBottom: 30 }}
             >
-              <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
+              <i className="fas fa-user mr-2 text-lg text-blueGray-400"></i>
               {username} - {section}
             </div>
           </div>

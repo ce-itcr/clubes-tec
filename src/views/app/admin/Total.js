@@ -1,9 +1,21 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Suggestions } from "../../../communication/Suggestions";
 import CardTable from "../../../components/Cards/CardTable";
 
 export default function Total() {
-  let history = useHistory();
+  const [currentData, setCurrentData] = useState([]);
+
+  let suggestionsClient = new Suggestions();
+
+  useEffect(() => {
+    getTotalSuggestions();
+  }, []);
+
+  const getTotalSuggestions = async () => {
+    const clientResponse = await suggestionsClient.getCategorySuggestions();
+    setCurrentData(clientResponse.data);
+  };
+
   return (
     <>
       <div
@@ -15,13 +27,7 @@ export default function Total() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable
-              name="Total Sugerencias"
-              data={[
-                {category:'Arte', qty:5},
-                {category:'Deportes', qty:2}
-              ]}
-            />
+          <CardTable name="Total Sugerencias" data={currentData} />
         </div>
       </div>
     </>

@@ -35,4 +35,17 @@ export class Suggestions {
     const response = await axios.get(requestUrl);
     return response;
   }
+
+  async getTOPAdminSuggesters() {
+    const requestUrl = apiUrl + "api/admin/top/suggesters";
+    const response = await axios.get(requestUrl);
+    return response;
+  }
+
+  async getTop5andBottom3Categories() {
+    const requestUrl = apiUrl + "api/admin/sorted/categories";
+    const response = await axios.get(requestUrl);
+    return response;
+  }
+
 }

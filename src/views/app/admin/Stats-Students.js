@@ -1,9 +1,22 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Suggestions } from "../../../communication/Suggestions";
 import CardTable from "../../../components/Cards/CardTable";
 
 export default function StudentStats() {
-  let history = useHistory();
+  const [currentData, setCurrentData] = useState([]);
+
+  let suggestionsClient = new Suggestions();
+
+  useEffect(() => {
+    getTotalSuggestions();
+  }, []);
+
+  const getTotalSuggestions = async () => {
+    const clientResponse = await suggestionsClient.getTOPAdminSuggesters();
+    console.log("🚀 ~ file: Stats-Students.js ~ line 16 ~ getTotalSuggestions ~ clientResponse", clientResponse)
+    setCurrentData(clientResponse.data);
+  };
+
   return (
     <>
       <div
@@ -15,8 +28,9 @@ export default function StudentStats() {
         }}
       >
         <div className="w-full mb-12 px-4">
-          <CardTable name="Estudiantes con más sugerencias"
-            data={[{studentName:'juan perez', qty:5},{studentName:'fernando lopez', qty:5}]}/** Aca deberiamos tener un qty aparte para los estudiantes **/
+          <CardTable
+            name="Estudiantes con más sugerencias"
+            data={currentData}
           />
         </div>
       </div>
