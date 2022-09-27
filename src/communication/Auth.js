@@ -30,5 +30,4 @@ export class Auth {
     });
     return response;
   }
-
 }

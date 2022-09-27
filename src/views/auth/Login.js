@@ -29,9 +29,15 @@ export default function Login() {
       toast.error("Debe llenar todos los espacios.");
     } else {
       const clientResponse = await authClient.verifyUserPost(userId, password);
-      //console.log(clientResponse);
-      if (clientResponse.data.length !== 0) {
-        //console.log(clientResponse.data);
+      console.log(
+        "🚀 ~ file: Login.js ~ line 32 ~ verifyUser ~ clientResponse",
+        typeof(clientResponse.data)
+      );
+      if (JSON.stringify(clientResponse.data) ===  JSON.stringify({ State: "Denied" })) {
+        toast.error(
+          "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
+        );
+      } else {
         localStorage.setItem(
           "userData",
           JSON.stringify({
@@ -53,10 +59,6 @@ export default function Login() {
             history.push("/app/admin/total");
           });
         }
-      } else {
-        toast.error(
-          "Usuario o contraseña incorrectos. \n Porfavor intente de nuevo."
-        );
       }
     }
   };

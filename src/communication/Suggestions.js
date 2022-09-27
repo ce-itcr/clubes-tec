@@ -2,32 +2,29 @@ import axios from "axios";
 import { apiUrl } from "../assets/utils/constants";
 
 export class Suggestions {
-  
   async getAllSuggestions() {
     const requestUrl = apiUrl + "api/suggestion/get";
     const response = await axios.get(requestUrl);
     return response;
   }
 
-  async updateSuggestions(name,category,suggester){
+  async updateSuggestions(name, category, suggester) {
     const requestUrl = apiUrl + "api/suggestion/update";
-    const response = await axios.post(requestUrl,{
+    const response = await axios.post(requestUrl, {
       name: name,
-      category:category,
-      suggester:suggester
-      });
-    console.log(response)
+      category: category,
+      suggester: suggester,
+    });
     return response;
   }
 
-  async createSuggestions(name,category,suggester){
+  async createSuggestions(name, category, suggester) {
     const requestUrl = apiUrl + "api/suggestion/add";
-    const response = await axios.post(requestUrl,{
+    const response = await axios.post(requestUrl, {
       name: name,
-      category:category,
-      suggester:suggester
-      });
-    console.log(response)
+      category: category,
+      suggester: suggester,
+    });
     return response;
   }
   async getCategorySuggestions() {
@@ -47,5 +44,4 @@ export class Suggestions {
     const response = await axios.get(requestUrl);
     return response;
   }
-
 }
