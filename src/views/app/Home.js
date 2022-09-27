@@ -29,7 +29,7 @@ export default function Home() {
 
   const searchSuggestions = async () => {
     if (category === "option" || category === "") {
-      toast.error("Debe seleccionar alguna opción");
+      getSuggestions();
     } else {
       let filteredData = suggestions.filter(function (value) {
         return value.category === category;
